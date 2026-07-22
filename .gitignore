@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+*.csv
+*.bag
+.vscode/
+.idea/
+.DS_Store
+~$*
+
+# Third-party reference material - do not redistribute
+LeLarge_Thesis_SLAM_FormulaStudent.pdf
+*_Thesis_*.pdf
