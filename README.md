@@ -22,7 +22,7 @@ A Formula Student driverless car has to race around a track marked out by traffi
 1. **Where am I?**
 2. **Where are the cones?**
 
-Answering both simultaneously is the SLAM problem. Dead reckoning alone drifts by metres within a minute, and on a track three metres wide, metres of drift means hitting cones.
+Answering both simultaneously is the SLAM problem. Dead reckoning alone drifts by meters within a minute, and on a track three meters wide, meters of drift means hitting cones.
 
 ## The approach
 
