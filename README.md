@@ -39,28 +39,9 @@ Each cycle:
 - **Predict** — move the estimate forward with a kinematic motion model. Uncertainty grows.
 - **Update** — for each detected cone: associate it with a known cone (or add it), compute the innovation, compute the Kalman gain, correct. Uncertainty shrinks.
 
-**Why EKF and not GraphSLAM?** Compute budget. Le Large's KIT thesis benchmarked both on real Formula Student data against DGPS ground truth and found GraphSLAM more accurate but far heavier on CPU, concluding EKF-SLAM remains "a valid option" where resources are constrained. That was our situation. Discussed in §21.4 of the docs.
-
-## Key design decisions
-
-- **Range–bearing measurements**, not Cartesian — matches what a lidar physically measures, so the noise model is honest.
-- **Mahalanobis distance for data association**, so a discrepancy is judged in standard deviations rather than metres, and one threshold stays meaningful even though it mixes metres with radians.
-- **6 m detection cutoff** — beyond that cone detections became unreliable, and a bad measurement is worse than no measurement.
-- **Sequential per-cone updates** rather than one batch update — same result for independent measurements, far simpler, and avoids inverting a large matrix.
-
----
-
 ## Running it
 
-Requires ROS 1 (Melodic/Noetic), `rospy`, `tf`, `numpy`, and the team's `aam_common_msgs`.
-
-```bash
-roslaunch aamfsd_gazebo <your_track>.launch   # simulator + perception
-rosrun <your_package> final_ekf.py            # this filter
-rviz                                          # fixed frame: map
-```
-
-In RViz add `/yassers_path` (trajectory) and `/global_map_yasser` (cone map).
+Requires ROS 1 (Melodic/Noetic), `rospy`, `tf`, `numpy`.
 
 ### Topics
 
@@ -88,8 +69,6 @@ In RViz add `/yassers_path` (trajectory) and `/global_map_yasser` (cone map).
 | `R` | `diag(0.25, 5°)²` | Measurement noise — how much to distrust the lidar |
 | `MAX_RANGE` | 6.0 m | Ignore cones beyond this |
 | `M_DIST_TH` | 1.0 | Association threshold (Mahalanobis, dimensionless) |
-
-Only the **ratio** of process to measurement noise affects the estimate — scaling both changes nothing. Measure `R` from stationary data, then tune `Cx` against it. See §21 of the docs.
 
 ---
 
