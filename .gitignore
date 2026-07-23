@@ -14,3 +14,6 @@ venv/
 # Third-party reference material - do not redistribute
 LeLarge_Thesis_SLAM_FormulaStudent.pdf
 *_Thesis_*.pdf
+
+# local build source, not published
+docs/.source.md

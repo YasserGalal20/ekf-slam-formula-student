@@ -11,7 +11,7 @@ Alongside the code there is a **full tutorial** ([`docs/`](docs/)) explaining th
 | Path | What it is |
 |---|---|
 | [`src/final_ekf.py`](src/final_ekf.py) | The EKF-SLAM ROS node. |
-| [`docs/`](docs/) | The full write-up, in `.docx` and `.pdf`. |
+| [`docs/`](docs/) | The full write-up (PDF, 85 pages). |
 
 ---
 
